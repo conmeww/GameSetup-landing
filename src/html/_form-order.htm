@@ -1,5 +1,6 @@
 <div id="popup-form-order" aria-hidden="true" class="popup">
   <div class="popup__wrapper">
+    <div class="anim-modal-1"></div>
     <div class="popup__content">
       <button data-close type="button" class="popup__close">
         <svg
@@ -33,7 +34,14 @@
           />
         </svg>
       </button>
-      <form class="form form-modal" action="#" name="form-order">
+
+      <form
+        data-ajax
+        method="POST"
+        action="sendmail.php"
+        class="form form-modal"
+        name="form-order"
+      >
         <div class="form__content">
           <p class="form__title form-modal__title">
             Получите консультацию специалиста:

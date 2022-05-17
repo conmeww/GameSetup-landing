@@ -24,6 +24,7 @@ img {
 
 html,
 body {
+  width: 100%;
   height: 100%;
 }
 body._lock {
@@ -31,10 +32,10 @@ body._lock {
 }
 .wrapper {
   min-height: 100%;
-  width: 100vw;
+  overflow-x: hidden;
 }
 .page {
-  width: 100vw;
+  width: 100%;
 }
 body {
   background-color: #0f0f0f;
@@ -59,6 +60,7 @@ h2 {
   font-size: 2.188vw; // 42px;
   margin-bottom: 5.208vw; //100px;
   line-height: 130%;
+  z-index: 200;
 }
 h2.col-lg,
 h2.h2__container {
@@ -105,11 +107,14 @@ p {
   font-weight: 500;
   &:hover {
     border-bottom: 4px solid rgb(225, 223, 223);
+    // border-bottom: 0.208vw solid rgb(225, 223, 223);
   }
   &:active,
-  &:focus {
+  &:focus,
+  &:hover {
     color: #4bb5f0;
     border-bottom: 4px solid #4bb5f0;
+    //  border-bottom: 0.208vw solid rgb(225, 223, 223);
   }
 }
 .contacts__ic {
@@ -119,13 +124,15 @@ p {
     }
   }
 }
+
 .checkbox__label {
   font-size: 0.833vw;
 }
 .form__error {
   position: absolute;
+
   right: 1.563vw; // 30px;
-  font-size: 0.677vw; //13px;
+  font-size: 1vw; //13px;
   color: #f05f4b;
 }
 .input-field {
@@ -170,6 +177,7 @@ p {
     #fcd303,
     #f05f4b
   );
+
   background-size: 100%;
   background-repeat: repeat;
   -webkit-background-clip: text;
@@ -281,7 +289,7 @@ input:-internal-autofill-selected {
   display: none;
 }
 .bottom-shadow {
-  height: 10.417vw; //200px;
+  height: 13vw; //200px;
   position: fixed;
   bottom: 0;
   width: 100vw;
@@ -319,13 +327,13 @@ input:-internal-autofill-selected {
 .form-header {
   display: none;
   position: absolute;
-  top: 6vw; //96px;
+  top: 5.5vw; //96px;
   background: $first-color;
   width: 30.365vw;
   height: 29.063vw; //558px;
   padding: 3.125vw 2.083vw 4.167vw 2.083vw; /// 60px 40px 80px 40px;
   z-index: 101;
-  right: 5.5vw; // 123px;
+  right: 4.9vw; // 123px;
 
   &__title {
     padding-bottom: 3.281vw; //65px;
@@ -357,67 +365,9 @@ input:-internal-autofill-selected {
   transform: translateY(-50%);
 }
 
-@media (max-width: 768px) {
-  /// FORMS MOBILE
-  .form-section {
-    background-image: none;
-    margin-bottom: 66vw;
-  }
-  .form-section__container {
-    height: 66.146vw;
-    margin: 0 auto;
-    h2 {
-      margin: 0 auto;
-      margin-bottom: 16.797vw;
-      max-width: 91vw;
-    }
-  }
-  .form__title {
-    font-size: 3.385vw;
-  }
-  .form-body__title {
-    position: absolute;
-    top: -9vw;
-  }
-  .form-body {
-    width: 100vw;
-    background-image: url(../img/contact-bg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 66.146vw;
-    margin-bottom: 15.625vw;
-    background-position: right;
-  }
-  .form__content {
-    width: 74.609vw;
-    padding-top: 10vw;
-    position: relative;
-    margin-bottom: 3vw;
-  }
-  input {
-    height: 5.208vw;
-    border-bottom: 0.13vw solid rgb(225, 223, 223);
-  }
-  .input-label {
-    font-size: 3.385vw;
-    top: -5.208vw;
-  }
-
-  label {
-    font-size: 2.604vw;
-  }
-  .checkbox__bg {
-    width: 1.875vw;
-    height: 1.875vw;
-    svg {
-      width: 6.51vw;
-      height: 6.51vw;
-    }
-  }
-}
 .input-field {
   &:first-of-type {
-    margin-bottom: 5.208vw;
+    margin-bottom: 3.8vw;
   }
 }
 /* Scrollbar Styling */
@@ -444,13 +394,13 @@ input:-internal-autofill-selected {
 input[type="text"] {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   padding-bottom: 0.625vw;
   transition: all 0.3s;
   color: $third-color;
   background: transparent;
   border-bottom: 1px solid $third-color;
-  font-size: 0.938vw;
+  font-size: 1.3vw;
 
   outline: none;
 
@@ -458,13 +408,13 @@ input[type="text"] {
 }
 
 input:invalid + label {
-  transform: translateY(-10px);
+  transform: translateY(0px);
 }
 input:focus {
   border-color: #2b96f1;
 }
 input:focus + label {
-  transform: translateY(-40px);
+  transform: translateY(-17px);
 }
 
 .input-label {
@@ -486,14 +436,148 @@ input:focus + label {
   top: 0;
 
   transition: transform 400ms ease;
-  transform: translateY(-40px);
+  transform: translateY(-17px);
 
-  text-transform: uppercase;
   position: absolute;
 
   background: transparent;
 
   span {
     color: $third-color;
+  }
+}
+// hero bg animation
+.hero-anim {
+  position: relative;
+}
+.hero__bg--anim {
+  position: absolute;
+  height: 120%;
+  width: 120%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  filter: blur(100px);
+  z-index: -4;
+}
+
+@media (max-width: 768px) {
+  .map,
+  .ymaps-2-1-79-map,
+  .ymaps-2-1-79-map,
+  .ymaps-2-1-79-map {
+    min-width: 91.797vw;
+    height: 50.391vw;
+    border-radius: 1.042vw;
+  }
+
+  .map-sm {
+    min-width: 91.797vw;
+    height: 50.391vw;
+
+    border-radius: 1.042vw;
+    overflow: hidden;
+  }
+
+  .bottom-shadow {
+    height: 50vw;
+
+    background: linear-gradient(
+      180deg,
+      #0f0f0f 0%,
+      rgba(15, 15, 15, 0.96) 30%,
+      rgba(15, 15, 15, 0.28) 80.21%,
+      rgba(15, 15, 15, 0) 100%
+    );
+  }
+  /// FORMS MOBILE
+  .form-section {
+    background-image: none;
+    margin-bottom: 66vw;
+  }
+  .form-section__container {
+    height: 66.146vw;
+    margin: 0 auto;
+    h2 {
+      margin: 0 auto;
+      margin-bottom: 16.797vw;
+      max-width: 91vw;
+    }
+  }
+  .form__title {
+    font-size: 3.385vw;
+  }
+  .form-body__title {
+    position: absolute;
+    top: -9vw;
+  }
+  .form-body {
+    width: 100%;
+    background-image: url(../img/contact-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 66.146vw;
+    margin-bottom: 15.625vw;
+    background-position: right;
+  }
+  .form__content {
+    width: 74.609vw;
+    padding-top: 10vw;
+    position: relative;
+    margin-bottom: 3vw;
+  }
+  input {
+    border-bottom: 0.13vw solid rgb(225, 223, 223);
+  }
+  .input-label {
+    font-size: 3.385vw;
+    top: -5.208vw;
+  }
+
+  label {
+    font-size: 2.604vw;
+  }
+  .checkbox__bg {
+    width: 1.875vw;
+    height: 1.875vw;
+    svg {
+      width: 6.51vw;
+      height: 6.51vw;
+    }
+  }
+
+  .checkbox__input {
+    & + label {
+      &:before {
+        width: 0.4vw;
+        height: 2vw;
+        left: 1.5vw;
+        top: 0.5vw;
+      }
+    }
+  }
+  .btn--underlined,
+  .decor__btn {
+    &:hover {
+      border-bottom: 0.208vw solid rgb(225, 223, 223);
+    }
+    &:active,
+    &:focus,
+    &:hover {
+      border-bottom: 0.208vw solid #4bb5f0;
+    }
+  }
+
+  input:invalid + label {
+    transform: translateY(20px);
+  }
+
+  input:focus + label {
+    transform: translateY(0px);
+  }
+
+  .input-label {
+    transform: translateY(0px);
   }
 }

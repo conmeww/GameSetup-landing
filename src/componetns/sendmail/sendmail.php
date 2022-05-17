@@ -13,7 +13,7 @@
 	//От кого письмо
 	$mail->setFrom('', 'Фрилансер по жизни');
 	//Кому отправить
-	$mail->addAddress('');
+	$mail->addAddress('a.kotiakova@dairyculture.ru');
 	//Тема письма
 	$mail->Subject = 'Привет! Это "Фрилансер по жизни"';
 

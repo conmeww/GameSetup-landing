@@ -23,6 +23,13 @@ phoneinp.forEach((num) => {
 //     }
 //   },false)
 // },false)
+if (window.matchMedia("(max-width: 768px)").matches) {
+  let showLessWorks = document.querySelectorAll(".works__item");
+  const nodelistToArray = Array.prototype.slice.call(showLessWorks).slice(3, 9);
+  nodelistToArray.forEach((item) => {
+    item.classList.add("d-none");
+  });
+}
 
 let showMoreProducts = document.getElementById("show-more-works");
 
@@ -75,6 +82,19 @@ gsap.fromTo(
     opacity: 1,
   }
 );
+gsap.fromTo(
+  ".hero__bg--anim",
+  { background: b1 },
+  {
+    ease: "none",
+    duration: 2,
+    background: b2,
+    repeat: -1,
+    yoyo: true,
+    scale: 0.8,
+    opacity: 1,
+  }
+);
 // show messagers header
 const btnShowMessagers = document.querySelector(".header__message");
 btnShowMessagers.addEventListener("click", function () {
@@ -115,66 +135,24 @@ document.addEventListener(
 function closeHeaderForm() {
   document.querySelector(".form-header").style.display = "none";
 }
-/// add to favorits
-// const removeCartItemButtons = document.getElementsByClassName("btn-danger");
-// for (var i = 0; i < removeCartItemButtons.length; i++) {
-//   let button = removeCartItemButtons[i];
-//   button.addEventListener("click", function (event) {
-//     let buttonClicked = event.target;
-//     buttonClicked.parentElement.parentElement.remove();
-//   });
-// }
-// const addToCartButtons = document.getElementsByClassName("shop-item-button");
-// for (var i = 0; i < addToCartButtons.length; i++) {
-//   let button = addToCartButtons[i];
-//   button.addEventListener("click", addToCart);
-// }
-// function removeCartItem(event) {
-//   var buttonClicked = event.target;
-//   buttonClicked.parentElement.remove();
-// }
-// function addToCart() {
-//   let button = event.target;
-//   let shopItem = button.parentElement.parentElement;
 
-//   let imageSrc = shopItem.getElementsByClassName("work__img")[0].src;
-
-//   addItemToCart(imageSrc);
-// }
-// function addItemToCart(imageSrc) {
-//   var cartRow = document.createElement("div");
-//   var cartItems = document.getElementsByClassName("cart-items")[0];
-
-//   cartRow.classList.add("cart-row");
-
-//   var cartRowContents = `<div class="cart-item cart-column">
-//                         <img class="cart-item-image" src="${imageSrc}" width="100" height="100">
-
-//                    <button class="btn btn-danger" type="button">REMOVE</button>  </div>`;
-//   cartRow.innerHTML = cartRowContents;
-//   cartItems.append(cartRow);
-//   cartRow
-//     .getElementsByClassName("btn-danger")[0]
-//     .addEventListener("click", removeCartItem);
-// }
 let favsNumberDiv = document.querySelector(".favs-number");
 let favsNumber = 0;
 
-console.log(favsNumber);
-const removeCartItemButtons = document.getElementsByClassName("favs-remove");
+const removeCartItemButtons = document.getElementsByClassName("btn-remove");
 for (var i = 0; i < removeCartItemButtons.length; i++) {
   let button = removeCartItemButtons[i];
   button.addEventListener("click", function (event) {
     let buttonClicked = event.target;
 
-    let getBtnFav =
-      (buttonClicked.parentElement.parentElement.parentElement.getElementsByClassName(
-        "favorites-ic"
-      )[0].style.display = "block");
+    // let getBtnFav =
+    //   buttonClicked.parentElement.parentElement.parentElement.getElementsByClassName(
+    //     "favorites__btn"
+    //   )[0];
     console.log(getBtnFav);
     //getBtnFav.getElementsByClassName("favoites-ic")[0].style.display = "block";
-    //console.log(buttonClicked.parentElement.childNodes);
-    buttonClicked.parentElement.style.display = "none";
+
+    //buttonClicked.parentElement.style.display = "none";
 
     //buttonClicked.parentElementremove();
     const getImageSrc =
@@ -186,8 +164,6 @@ for (var i = 0; i < removeCartItemButtons.length; i++) {
     var cartItemsNames = cartItems.getElementsByClassName("favorites__img");
     for (var i = 0; i < cartItemsNames.length; i++) {
       if (cartItemsNames[i].src == getImageSrc) {
-        //console.log(getImageSrc);
-        //console.log(cartItemsNames);
         cartItemsNames[i].parentElement.parentElement.remove();
       }
     }
@@ -207,10 +183,11 @@ for (var i = 0; i < removeCartItemButtons.length; i++) {
     }
   });
 }
-const addToCartButtons = document.getElementsByClassName("favorites-ic");
+//const addToCartButtons = document.getElementsByClassName("favorites-ic");
+const addToCartButtons = document.getElementsByClassName("works__item");
+
 for (var i = 0; i < addToCartButtons.length; i++) {
   let button = addToCartButtons[i];
-
   button.addEventListener("click", addToCart);
 }
 function removeCartItem(event) {
@@ -221,25 +198,41 @@ function removeCartItem(event) {
   //  buttonClicked.parentElement.parentElement.getElementsByClassName(
   //    "favorites__img"
   //   )[0].src;
-  // console.log(favImageSRC);
 
   // hide sidebar when no fav is in
 }
 function addToCart() {
   let button = event.target;
-  let shopItem = button.parentElement.parentElement;
-  button.style.display = "none";
-  shopItem.getElementsByClassName("favs-remove")[0].style.display = "block";
+  let shopItem = button.parentElement;
+  let addToFavButton = shopItem.getElementsByClassName("favorites__btn")[0];
+  addToFavButton.classList.toggle("d-none");
+  shopItem.getElementsByClassName("btn-remove")[0].classList.toggle("d-none");
   let imageSrc = shopItem.getElementsByClassName("work__img")[0].src;
   addItemToCart(imageSrc);
-  favsNumber++;
-  document.querySelector(".favorites-ic__outer").style.visibility = "hidden";
-  document
-    .querySelector(".favorites-ic__inner")
-    .classList.add("favorites-ic--clicked");
-
-  favsNumberDiv.innerHTML = favsNumber;
-  console.log(favsNumber);
+  if (
+    shopItem
+      .getElementsByClassName("favorites__btn")[0]
+      .classList.contains("d-none")
+  ) {
+    favsNumber++;
+    favsNumberDiv.innerHTML = favsNumber;
+    document.querySelector(".favorites-ic__outer").style.visibility = "hidden";
+    document
+      .querySelector(".favorites-ic__inner")
+      .classList.add("favorites-ic--clicked");
+  } else {
+    favsNumber--;
+    if (favsNumber == 0) {
+      favsNumberDiv.innerHTML = "";
+      document.querySelector(".favorites-ic__outer").style.visibility =
+        "visible";
+      document
+        .querySelector(".favorites-ic__inner")
+        .classList.remove("favorites-ic--clicked");
+    } else {
+      favsNumberDiv.innerHTML = favsNumber;
+    }
+  }
 }
 function addItemToCart(imageSrc) {
   document.querySelector(".check-works").classList.add("d-none");
@@ -325,3 +318,4 @@ document
           : "Это обязательное поле";
     });
   });
+/// map

@@ -117,8 +117,8 @@ function initSliders() {
       observeParents: true,
       //slidesPerView: 5,
       spaceBetween: 30,
-      autoHeight: true,
-      speed: 800,
+      autoHeight: false,
+      speed: 1500,
       // autoplay: true,
 
       //touchRatio: 0,
@@ -126,12 +126,18 @@ function initSliders() {
       loop: true,
       //preloadImages: false,
       //lazy: true,
+      centeredSlides: true,
+      autoplay: {
+        delay: 800,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
 
       effect: "fade",
       // autoplay: {
       //   delay: 300,
       //   disableOnInteraction: false,
-      //   pauseOnMouseEnter: true,
+      //
       // },
 
       // Пагинация
@@ -164,7 +170,7 @@ function initSliders() {
           spaceBetween: 30,
         },
         768: {
-          slidesPerView: 1.5,
+          slidesPerView: 3.5,
           spaceBetween: 30,
         },
         992: {
@@ -249,16 +255,15 @@ function initSliders() {
       //slidesPerView: 3.9,
       spaceBetween: 50,
       autoHeight: false,
-      speed: 800,
+      speed: 1500,
       autoplay: true,
       loop: true,
 
       centeredSlides: true,
-      // autoplay: {
-      //   delay: 300,
-      //   disableOnInteraction: false,
-      //   pauseOnMouseEnter: true,
-      // },
+      autoplay: {
+        delay: 800,
+        disableOnInteraction: false,
+      },
 
       // Кнопки "влево/вправо"
       /*    navigation: {

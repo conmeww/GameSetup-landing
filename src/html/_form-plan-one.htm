@@ -1,5 +1,7 @@
 <div id="popup-plan-one" aria-hidden="true" class="popup">
   <div class="popup__wrapper">
+    <div class="anim-modal-1"></div>
+
     <div class="popup__content">
       <button data-close type="button" class="popup__close">
         <svg
@@ -33,7 +35,13 @@
           />
         </svg>
       </button>
-      <form class="form form-modal" action="#" name="form-modal">
+      <form
+        data-ajax
+        method="POST"
+        action="sendmail.php"
+        class="form form-modal"
+        name="form-modal"
+      >
         <div class="form__content">
           <p class="form__title form-modal__title">
             Получите консультацию специалиста:
@@ -68,7 +76,7 @@
             <label class="input-label" for="phone_p1">Номер телефона</label>
           </div>
 
-          <div class="checkbox checkbox__modal">
+          <div class="checkbox">
             <span class="checkbox__bg"
               ><svg
                 width="32"
@@ -84,15 +92,15 @@
               </svg>
             </span>
             <input
-              id="c_p1"
-              data-error="Ошибка"
+              id="p_1"
               class="checkbox__input"
               type="checkbox"
               value="1"
-              name="c_p1"
+              name="p_1"
               data-required="checkbox"
+              checked
             />
-            <label for="c_p1" class="checkbox__label"
+            <label for="p_1" class="checkbox__label"
               >Соглашаюсь на обработку персональных данных</label
             >
           </div>
